@@ -313,10 +313,16 @@ public class adminHome extends javax.swing.JFrame {
              Class.forName("com.mysql.jdbc.Driver");
              Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/srm", "root", "rictreroyrau962415");
              Statement st = con.createStatement();
-             st.executeUpdate("insert into student values('"+rollno+"','"+course+"','"+branch+"','"+name+"','"+gender+"','"+fathername+"')");
+             if(rollno.length()==0){
+                 JOptionPane.showMessageDialog(null,"Roll no is not added");
+             }
+             else{
+                 st.executeUpdate("insert into student values('"+rollno+"','"+course+"','"+branch+"','"+name+"','"+gender+"','"+fathername+"')");
              JOptionPane.showMessageDialog(null,"Succesfully added a student");
              setVisible(false);
              new adminHome().setVisible(true);
+             }
+             
          }
          catch(Exception e){
              JOptionPane.showMessageDialog(null,e.toString());
